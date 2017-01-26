@@ -11,7 +11,15 @@ public class GameObject {
 
     public boolean active;
 
-    private List<Component> components;
+    protected List<Component> components;
+
+    public GameObject(){
+        this("GameObject");
+    }
+
+    public GameObject(String _name){
+        name = _name;
+    }
 
     public <T extends Component> void AddComponent(T _comp){
 

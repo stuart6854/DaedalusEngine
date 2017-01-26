@@ -2,6 +2,7 @@ package main.java.org.daedalus.architecture;
 
 import main.java.org.daedalus.utils.Debug;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,9 +12,21 @@ public class SceneManager {
 
     private static Scene currentScene;
 
-    private static List<Scene> scenes;
+    private static List<Scene> scenes = new ArrayList<>();
 
-    public void AddScene(Scene _scene){
+    public static void Initialise(){
+        if(scenes.size() == 0){
+           throw new RuntimeException("No scenes in build!");
+        }
+
+        currentScene = scenes.get(0);
+    }
+
+    public static void Update(){
+        currentScene.Update();
+    }
+
+    public static void AddScene(Scene _scene){
         if(scenes.contains(_scene)){
             System.err.println("SceneManager::AddScene -> Scene already in scene list!");
             return;
@@ -42,7 +55,7 @@ public class SceneManager {
     public static void LoadScene(int _buildIndex){
         currentScene.Cleanup();
         currentScene = scenes.get(_buildIndex);
-        currentScene.Initalise();
+        currentScene.Initialise();
     }
     
     /**

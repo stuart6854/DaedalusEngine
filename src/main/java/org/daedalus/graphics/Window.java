@@ -3,6 +3,7 @@ package main.java.org.daedalus.graphics;
 import main.java.org.daedalus.utils.Debug;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
+import org.lwjgl.opengl.GL11;
 
 import static org.lwjgl.system.MemoryUtil.NULL;
 import static org.lwjgl.glfw.GLFW.*;
@@ -77,12 +78,20 @@ public class Window {
         GLFWVidMode vidMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
         glfwSetWindowPos(windowId, (vidMode.width() - resolution.width) / 2, (vidMode.height() - resolution.height) / 2);
     }
-    
+
     private void SetVisible(boolean _visible){
         if(_visible) glfwShowWindow(windowId);
         else glfwHideWindow(windowId);
     }
-    
+
+    public void SetTitle(String _title){
+        glfwSetWindowTitle(windowId, _title);
+    }
+
+    public void SetClearColor(Color _color){
+        GL11.glClearColor(_color.getR(), _color.getG(), _color.getB(), _color.getA());
+    }
+
     public boolean shouldClose(){
         return glfwWindowShouldClose(windowId);
     }
