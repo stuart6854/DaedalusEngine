@@ -26,6 +26,10 @@ public class SceneManager {
         currentScene.Update();
     }
 
+    public static void Render(){
+        currentScene.Render();
+    }
+    
     public static void AddScene(Scene _scene){
         if(scenes.contains(_scene)){
             System.err.println("SceneManager::AddScene -> Scene already in scene list!");

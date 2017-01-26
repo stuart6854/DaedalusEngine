@@ -23,6 +23,10 @@ public class Scene {
     public void Update(){
 
     }
+    
+    public void Render(){
+        
+    }
 
     public void Cleanup(){
 

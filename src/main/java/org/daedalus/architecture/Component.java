@@ -5,10 +5,14 @@ package main.java.org.daedalus.architecture;
  */
 public class Component {
 
-    private boolean multipleInstance; // Are GameObjects allowed to have multiple of this component?
-
-    public Component(boolean _allowMultiInstance){
-
+    private boolean singleInstance; // Are GameObjects allowed to have multiple of this component?
+    
+    public Component(boolean _singleInstance){
+        singleInstance = _singleInstance;
     }
-
+    
+    public boolean getSingleInstance(){
+        return singleInstance;
+    }
+    
 }

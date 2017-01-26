@@ -1,5 +1,8 @@
 package main.java.org.daedalus.architecture;
 
+import main.java.org.daedalus.architecture.components.Transform;
+import main.java.org.daedalus.utils.Debug;
+
 import java.util.List;
 
 /**
@@ -12,6 +15,8 @@ public class GameObject {
     public boolean active;
 
     protected List<Component> components;
+    
+    private Transform transform;
 
     public GameObject(){
         this("GameObject");
@@ -19,10 +24,20 @@ public class GameObject {
 
     public GameObject(String _name){
         name = _name;
+        
+        transform = AddComponent(new Transform());
     }
 
-    public <T extends Component> void AddComponent(T _comp){
-
+    public <T extends Component> T AddComponent(Component _comp){
+        if(_comp.getSingleInstance()) {
+            if (CountCompOfType(_comp.getClass()) >= 0) {
+                Debug.Error("Can only have ONE instance of component " + _comp.getClass().getSimpleName() + " on GameObject " + name);
+                return null;
+            }
+        }
+        
+        components.add(_comp);
+        return (T)_comp;
     }
 
     public <T extends Component> Component GetComponent(Class<T> _type){

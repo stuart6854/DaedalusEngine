@@ -1,10 +1,12 @@
 package main.java.org.daedalus.graphics;
 
+import main.java.org.daedalus.graphics.types.Color;
 import main.java.org.daedalus.utils.Debug;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 
+import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 import static org.lwjgl.glfw.GLFW.*;
 
@@ -67,7 +69,7 @@ public class Window {
     }
     
     private void SetGL(){
-        
+        glEnable(GL_TEXTURE_2D);
     }
     
     private void SetCallbacks(){
@@ -89,7 +91,7 @@ public class Window {
     }
 
     public void SetClearColor(Color _color){
-        GL11.glClearColor(_color.getR(), _color.getG(), _color.getB(), _color.getA());
+        glClearColor(_color.getR(), _color.getG(), _color.getB(), _color.getA());
     }
 
     public boolean shouldClose(){
