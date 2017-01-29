@@ -1,10 +1,12 @@
 package main.java.org.daedalus.graphics;
 
 import main.java.org.daedalus.graphics.types.Color;
+import main.java.org.daedalus.input.Keyboard;
+import main.java.org.daedalus.input.Mouse;
 import main.java.org.daedalus.utils.Debug;
+import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
-import org.lwjgl.opengl.GL11;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
@@ -15,10 +17,12 @@ import static org.lwjgl.glfw.GLFW.*;
  */
 public class Window {
     
-    private long windowId;
+    private static long windowId;
     
-    private String title;
-    private Resolution resolution;
+    private static String title;
+    private static Resolution resolution;
+    
+    private GLFWKeyCallback keyCallback;
     
     public void InitWindow(String _title, int _width, int _height, boolean _fullscreen){
         InitWindow(_title, new Resolution(_width, _height, _fullscreen));
@@ -62,6 +66,9 @@ public class Window {
         glfwDestroyWindow(windowId);
         
         //TODO: Free callbacks
+        keyCallback.free();
+        
+        glfwTerminate();
     }
     
     private void SetWindowHints(){
@@ -73,7 +80,9 @@ public class Window {
     }
     
     private void SetCallbacks(){
-        
+        glfwSetKeyCallback(windowId, keyCallback = new Keyboard());
+        glfwSetCharCallback(windowId, Keyboard.CharacterCallback);
+        new Mouse().setCallbacks(windowId);
     }
     
     private void CentreOnScreen(){
@@ -81,21 +90,33 @@ public class Window {
         glfwSetWindowPos(windowId, (vidMode.width() - resolution.width) / 2, (vidMode.height() - resolution.height) / 2);
     }
 
-    private void SetVisible(boolean _visible){
+    private static void SetVisible(boolean _visible){
         if(_visible) glfwShowWindow(windowId);
         else glfwHideWindow(windowId);
     }
 
-    public void SetTitle(String _title){
+    public static void SetTitle(String _title){
         glfwSetWindowTitle(windowId, _title);
     }
 
-    public void SetClearColor(Color _color){
+    public static void SetClearColor(Color _color){
         glClearColor(_color.getR(), _color.getG(), _color.getB(), _color.getA());
     }
 
     public boolean shouldClose(){
         return glfwWindowShouldClose(windowId);
+    }
+    
+    public static long getWindowId(){
+        return windowId;
+    }
+    
+    public static String getTitle() {
+        return title;
+    }
+    
+    public static Resolution getResolution() {
+        return resolution;
     }
     
 }

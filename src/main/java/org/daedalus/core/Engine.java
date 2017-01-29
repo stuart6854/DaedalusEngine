@@ -3,6 +3,8 @@ package main.java.org.daedalus.core;
 import main.java.org.daedalus.architecture.SceneManager;
 import main.java.org.daedalus.graphics.types.Color;
 import main.java.org.daedalus.graphics.Window;
+import main.java.org.daedalus.input.Keyboard;
+import main.java.org.daedalus.input.Mouse;
 import main.java.org.daedalus.utils.Debug;
 import main.java.org.daedalus.utils.Time;
 import org.lwjgl.Version;
@@ -34,21 +36,21 @@ public class Engine {
         
         //Initialise Engine
         window = new Window();
-        window.InitWindow("Daedalus Engine", 640, 480, false);
-
-        SceneManager.Initialise();
+        window.InitWindow("Daedalus Engine", 1280, 720, false);
+        window.CreateWindow();
 
         time = new Time();
     }
     
     public void Start(){
-        window.CreateWindow();
 
         Debug.Log("LWJGL Version " + Version.getVersion());
         Debug.Log("OpenGL Version: " + glGetString(GL_VERSION));
         Debug.Log("GLFW Version " + GLFW.glfwGetVersionString());
 
         window.SetClearColor(Color.Black());
+        
+        SceneManager.Initialise();
         
         EngineLoop();
     }
@@ -59,13 +61,13 @@ public class Engine {
         double lastTime = GLFW.glfwGetTime();
         while(isRunning){
             double currentTime = GLFW.glfwGetTime();
-            time.setDeltaTime((currentTime - lastTime) * 1000d); // Convert to ms
+            time.setDeltaTime((currentTime - lastTime)); // Convert to ms
             lastTime = currentTime;
 
             Update();
             Render();
 
-            window.SetTitle("Daedalus Engine " + Time.getDeltaTime() + "ms");
+            window.SetTitle("Daedalus Engine " + (Time.getDeltaTime() * 1000d) + "ms");
             window.Update();
             
             if(window.shouldClose()) isRunning = false;
@@ -75,7 +77,13 @@ public class Engine {
     }
 
     private void Update(){
+        Mouse.BeginFrame(Time.getDeltaTime());
+        Keyboard.BeginFrame();
+        
         SceneManager.Update();
+        
+        Mouse.EndFrame();
+        Keyboard.EndFrame();
     }
     
     private void Render(){

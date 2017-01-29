@@ -3,7 +3,9 @@
     <words>
       <w>fullscreen</w>
       <w>glfw</w>
+      <w>glsl</w>
       <w>lwjgl</w>
+      <w>shaders</w>
     </words>
   </dictionary>
 </component>

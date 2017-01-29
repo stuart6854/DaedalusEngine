@@ -1,11 +1,7 @@
 package main.java.org.daedalus.graphics.types;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.ByteBuffer;
-
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
+import static org.lwjgl.opengl.GL11.glBindTexture;
 import static org.lwjgl.opengl.GL11.glGenTextures;
 
 /**
@@ -25,5 +21,25 @@ public abstract class Texture {
     }
     
     protected abstract void UploadTexture(String _path);
+    
+    public void Bind(){
+        glBindTexture(GL_TEXTURE_2D, id);
+    }
+    
+    public int getId(){
+        return id;
+    }
+    
+    public int getTextureUnit(){
+        return textureUnit;
+    }
+    
+    public int getWidth(){
+        return width;
+    }
+    
+    public int getHeight(){
+        return height;
+    }
     
 }

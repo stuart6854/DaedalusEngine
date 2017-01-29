@@ -13,8 +13,8 @@ public class Time {
         Time.deltaTime = _deltaTime;
     }
 
-    public static double getDeltaTime(){
-        return deltaTime;
+    public static float getDeltaTime(){
+        return (float)deltaTime;
     }
 
 }

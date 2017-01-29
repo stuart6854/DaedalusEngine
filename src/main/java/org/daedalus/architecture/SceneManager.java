@@ -1,5 +1,6 @@
 package main.java.org.daedalus.architecture;
 
+import main.java.org.daedalus.architecture.components.Camera;
 import main.java.org.daedalus.utils.Debug;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class SceneManager {
            throw new RuntimeException("No scenes in build!");
         }
 
-        currentScene = scenes.get(0);
+        LoadScene(0);
     }
 
     public static void Update(){
@@ -38,8 +39,7 @@ public class SceneManager {
 
         scenes.add(_scene);
     }
-    
-    
+        
     public static void LoadSceneByName(String _sceneName){
         int buildIndex = getSceneBuildIndex(_sceneName);
         if(buildIndex == -1){
@@ -57,7 +57,9 @@ public class SceneManager {
      * @param _buildIndex
      */
     public static void LoadScene(int _buildIndex){
-        currentScene.Cleanup();
+        if(currentScene != null)
+            currentScene.Cleanup();
+        
         currentScene = scenes.get(_buildIndex);
         currentScene.Initialise();
     }
@@ -106,5 +108,9 @@ public class SceneManager {
         Debug.Error("No scene with name: " + _sceneName);
         return -1;
     }
-
+    
+    public static Scene getCurrentScene(){
+        return currentScene;
+    }
+    
 }

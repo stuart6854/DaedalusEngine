@@ -12,7 +12,7 @@ public class Resolution{
     }
     
     public float getAspectRatio(){
-        return width / height;
+        return (float)width / (float)height;
     }
     
 }
