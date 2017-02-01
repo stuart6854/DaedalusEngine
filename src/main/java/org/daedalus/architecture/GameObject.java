@@ -76,5 +76,9 @@ public class GameObject {
 
         return i;
     }
-
+    
+    public Transform getTransform(){
+        return transform;
+    }
+    
 }

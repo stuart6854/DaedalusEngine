@@ -3,8 +3,10 @@ package main.java.org.daedalus.core;
 import main.java.org.daedalus.architecture.SceneManager;
 import main.java.org.daedalus.graphics.types.Color;
 import main.java.org.daedalus.graphics.Window;
+import main.java.org.daedalus.graphics.ui.GUI;
 import main.java.org.daedalus.input.Keyboard;
 import main.java.org.daedalus.input.Mouse;
+import main.java.org.daedalus.physics.Physics;
 import main.java.org.daedalus.utils.Debug;
 import main.java.org.daedalus.utils.Time;
 import org.lwjgl.Version;
@@ -22,6 +24,8 @@ public class Engine {
     private boolean isRunning;
     
     private Window window;
+    private Physics physics;
+    private GUI gui;
     
     public static void main(String... args){
         Engine engine = new Engine();
@@ -35,11 +39,17 @@ public class Engine {
         GLFW.glfwInit();
         
         //Initialise Engine
+        time = new Time();
+        
         window = new Window();
         window.InitWindow("Daedalus Engine", 1280, 720, false);
         window.CreateWindow();
-
-        time = new Time();
+        
+        physics = new Physics();
+        physics.Initialise();
+        
+        gui = new GUI();
+        gui.Initialise();
     }
     
     public void Start(){
@@ -64,6 +74,7 @@ public class Engine {
             time.setDeltaTime((currentTime - lastTime)); // Convert to ms
             lastTime = currentTime;
 
+            physics.Tick();
             Update();
             Render();
 
@@ -87,12 +98,15 @@ public class Engine {
     }
     
     private void Render(){
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
         SceneManager.Render();
+        
+        gui.Render();
     }
     
     private void Cleanup(){
         window.Destroy();
+        gui.Cleanup();
     }
 
 }

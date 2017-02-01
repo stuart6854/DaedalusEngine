@@ -24,6 +24,7 @@ public class Scene {
     }
 
     public void Initialise(){
+        
     }
 
     public void Update(){
@@ -66,6 +67,10 @@ public class Scene {
         }
         
         return mainCamera;
+    }
+    
+    public List<GameObject> getGameObjects(){
+        return gameObjects;
     }
     
 }

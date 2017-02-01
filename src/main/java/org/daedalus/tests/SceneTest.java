@@ -2,6 +2,7 @@ package main.java.org.daedalus.tests;
 
 import main.java.org.daedalus.architecture.GameObject;
 import main.java.org.daedalus.architecture.Scene;
+import main.java.org.daedalus.architecture.components.Rigidbody;
 import main.java.org.daedalus.architecture.components.SpriteRenderer;
 import main.java.org.daedalus.architecture.components.Transform;
 import main.java.org.daedalus.graphics.types.Sprite;
@@ -31,7 +32,10 @@ public class SceneTest extends Scene {
         testGameObject.name = "GameObject 1";
         SpriteRenderer spriteRenderer = testGameObject.AddComponent(new SpriteRenderer());
         spriteRenderer.SetSprite(sprite);
+        testGameObject.AddComponent(new Rigidbody());
         AddGameObject(testGameObject);
+        
+        testGameObject.getTransform().position.set(10, 100, 0);
     }
 
     @Override
