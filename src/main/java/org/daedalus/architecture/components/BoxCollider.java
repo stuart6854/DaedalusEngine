@@ -1,5 +1,7 @@
 package main.java.org.daedalus.architecture.components;
 
+import main.java.org.daedalus.utils.Debug;
+import main.java.org.daedalus.utils.MeshUtils;
 import org.joml.Vector2f;
 
 /**
@@ -7,8 +9,21 @@ import org.joml.Vector2f;
  */
 public class BoxCollider extends Collider {
         
-    private Vector2f size = new Vector2f(1f, 1f);
-    private Vector2f centre = new Vector2f(0f, 0f);
+    private Vector2f size = new Vector2f();
+    private Vector2f centre = new Vector2f();
+    
+    public BoxCollider(){
+        super();
+        
+        SetSize(100, 100);
+        SetCentre(0, 0);
+    }
+    
+    @Override
+    public void Render(){
+        if(RENDER_DEBUG_MESH)
+            Debug.RenderMeshOutline(renderModel, transform, meshData.tris.length);
+    }
     
     @Override
     protected boolean vsBoxCollider(BoxCollider _box) {
@@ -36,6 +51,22 @@ public class BoxCollider extends Collider {
     public static Vector2f getMax(BoxCollider _box){
         Vector2f halfSize = _box.size.mul(0.5f);
         return new Vector2f(_box.centre.x + halfSize.x, _box.centre.y + halfSize.y);
+    }
+    
+    public void SetSize(float _w, float _h){
+        if(_w != size.x || _h != size.y)
+            UpdateRenderModel(MeshUtils.SquareMesh(_w, _h, false));
+        
+        size.x = _w;
+        size.y = _h;
+    }
+    
+    public void SetCentre(float _x, float _y){
+        if(_x != centre.x || _y != centre.y)
+            UpdateRenderModel(MeshUtils.SquareMesh(_x, _y));
+    
+        centre.x = _x;
+        centre.y = _y;
     }
     
 }

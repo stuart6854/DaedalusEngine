@@ -16,6 +16,10 @@ public class Component {
         singleInstance = _singleInstance;
     }
     
+    public void Update(){  }
+    
+    public void Render(){  }
+    
     public boolean getSingleInstance(){
         return singleInstance;
     }

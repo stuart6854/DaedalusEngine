@@ -3,6 +3,7 @@ package main.java.org.daedalus.architecture.components;
 import main.java.org.daedalus.graphics.shaders.ShaderProgram;
 import main.java.org.daedalus.graphics.types.Sprite;
 import main.java.org.daedalus.graphics.types.Color;
+import main.java.org.daedalus.utils.Debug;
 import main.java.org.daedalus.utils.FileUtils;
 import org.joml.Vector2f;
 
@@ -30,6 +31,8 @@ public class SpriteRenderer extends Renderer {
     
     @Override
     public void Render() {
+        super.Render();
+        
         glEnable(GL_DEPTH_TEST);
         
         spriteProgram.Bind();
@@ -44,6 +47,8 @@ public class SpriteRenderer extends Renderer {
         
         glDrawElements(GL_TRIANGLES, sprite.getTriangles().length, GL_UNSIGNED_INT, 0);
         
+//        if(RENDER_MESH)
+//            Debug.RenderMeshOutline(sprite.getRenderModel(), transform, sprite.getTriangles().length);
     }
     
     public void SetSprite(Sprite _sprite){

@@ -33,13 +33,13 @@ public class GameObject {
     }
     
     public void Update(){
-        
+        for(Component component : components)
+            component.Update();
     }
     
     public void Render(){
-        Renderer renderer = (Renderer)GetComponent(Renderer.class);
-        if(renderer != null)
-            renderer.Render();
+        for(Component component : components)
+            component.Render();
     }
     
     public <T extends Component> T AddComponent(Component _comp){

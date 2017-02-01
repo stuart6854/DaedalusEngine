@@ -7,12 +7,15 @@ import main.java.org.daedalus.architecture.Component;
  */
 public class Renderer extends Component {
     
+    public static boolean RENDER_MESH;
+    
     public Renderer() {
         super(true);
     }
 
+    @Override
     public void Render(){
-        
+        super.Render();
     }
     
 }

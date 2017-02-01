@@ -29,7 +29,6 @@ public class FileUtils {
     public static ByteBuffer ReadFile(String _path){
         try {
             File file = new File(_path);
-            Debug.Log(file.getAbsolutePath());
             
             byte[] bytes = Files.readAllBytes(new File(_path).toPath());
             ByteBuffer buffer = BufferUtils.createByteBuffer(bytes.length);

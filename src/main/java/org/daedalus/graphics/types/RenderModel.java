@@ -68,9 +68,11 @@ public class RenderModel {
         }
     
         List<Float> uvs = new ArrayList<>();
-        for(Vector2f uv : _uvs){
-            uvs.add(uv.x);
-            uvs.add(uv.y);
+        if(_uvs != null) {
+            for (Vector2f uv : _uvs) {
+                uvs.add(uv.x);
+                uvs.add(uv.y);
+            }
         }
         
         return CreateModel(_indices, Utils.ToArrayFloat(verts), Utils.ToArrayFloat(uvs), null, null);
