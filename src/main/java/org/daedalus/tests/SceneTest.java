@@ -11,6 +11,8 @@ import main.java.org.daedalus.math.Rect;
 import main.java.org.daedalus.utils.Debug;
 import main.java.org.daedalus.utils.MeshUtils;
 import main.java.org.daedalus.utils.Time;
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.World;
 import org.joml.Vector2f;
 
 /**

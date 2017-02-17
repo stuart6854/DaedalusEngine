@@ -1,7 +1,13 @@
 package main.java.org.daedalus.architecture.components;
 
+import main.java.org.daedalus.physics.Physics;
 import main.java.org.daedalus.utils.Debug;
 import main.java.org.daedalus.utils.MeshUtils;
+import org.jbox2d.collision.Collision;
+import org.jbox2d.collision.shapes.PolygonShape;
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.Body;
+import org.jbox2d.dynamics.BodyDef;
 import org.joml.Vector2f;
 
 /**
@@ -12,11 +18,25 @@ public class BoxCollider extends Collider {
     private Vector2f size = new Vector2f();
     private Vector2f centre = new Vector2f();
     
+    private BodyDef bodyDef;
+    private Body body;
+    private PolygonShape shape;
+    
     public BoxCollider(){
         super();
         
         SetSize(100, 100);
         SetCentre(0, 0);
+        bodyDef = new BodyDef();
+        body = Physics.world.createBody(bodyDef);
+        shape = new PolygonShape();
+        shape.setAsBox(size.x / 2f, size.y / 2f);
+        body.createFixture(shape, 0f);
+    }
+    
+    @Override
+    public void FixedUpdate(){
+        bodyDef.setPosition(new Vec2(transform.position.x, transform.position.y));
     }
     
     @Override

@@ -18,6 +18,8 @@ public class Component {
     
     public void Update(){  }
     
+    public void FixedUpdate(){  } // Physics Updates
+    
     public void Render(){  }
     
     public boolean getSingleInstance(){

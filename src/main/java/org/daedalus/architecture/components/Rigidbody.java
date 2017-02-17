@@ -27,7 +27,7 @@ public class Rigidbody extends Component{
     }
     public void TickPhysics(float _dt){
         if(useGravity)
-            velocity.add(Physics.gravity.mul(_dt, new Vector3f()));
+            velocity.add(Physics.getGravity().mul(_dt, new Vector3f()));
         
         transform.position.add(velocity);
     }
