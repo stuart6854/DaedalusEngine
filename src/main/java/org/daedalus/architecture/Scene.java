@@ -39,7 +39,7 @@ public class Scene {
     }
 
     public void Cleanup(){
-
+        gameObjects.clear();
     }
     
     public void AddGameObject(GameObject _gameObject){
