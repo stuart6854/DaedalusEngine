@@ -57,6 +57,8 @@ public class SceneManager {
      * @param _buildIndex
      */
     public static void LoadScene(int _buildIndex){
+        //TODO: BUG - SCENES KEEP THEIR STATE
+
         if(currentScene != null)
             currentScene.Cleanup();
         

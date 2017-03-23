@@ -9,7 +9,8 @@ import main.java.org.daedalus.core.Engine;
 public class EngineTest {
 
     public static void main(String... args){
-        SceneManager.AddScene(new SceneTest("Test Scene"));
+        SceneManager.AddScene(new SceneTest());
+        SceneManager.AddScene(new SceneTestTwo());
 
         Engine engine = new Engine();
         engine.Initialise();

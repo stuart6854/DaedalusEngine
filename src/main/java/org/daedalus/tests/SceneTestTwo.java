@@ -3,31 +3,28 @@ package main.java.org.daedalus.tests;
 import main.java.org.daedalus.architecture.GameObject;
 import main.java.org.daedalus.architecture.Scene;
 import main.java.org.daedalus.architecture.SceneManager;
-import main.java.org.daedalus.architecture.components.*;
-import main.java.org.daedalus.graphics.types.MeshData;
+import main.java.org.daedalus.architecture.components.BoxCollider;
+import main.java.org.daedalus.architecture.components.Renderer;
+import main.java.org.daedalus.architecture.components.SpriteRenderer;
+import main.java.org.daedalus.architecture.components.Transform;
 import main.java.org.daedalus.graphics.types.Sprite;
 import main.java.org.daedalus.graphics.types.Texture2D;
 import main.java.org.daedalus.input.Keyboard;
 import main.java.org.daedalus.math.Rect;
-import main.java.org.daedalus.utils.Debug;
-import main.java.org.daedalus.utils.MeshUtils;
 import main.java.org.daedalus.utils.Time;
-import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.World;
-import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 /**
  * Created by 1622565 on 26/01/2017.
  */
-public class SceneTest extends Scene {
+public class SceneTestTwo extends Scene {
 
     private Texture2D texture;
     private Sprite sprite;
     private GameObject testGameObject;
 
-    public SceneTest() {
-        super("Scene Test 1");
+    public SceneTestTwo() {
+        super("Scene Test 2");
     }
 
     @Override
@@ -57,28 +54,10 @@ public class SceneTest extends Scene {
     @Override
     public void Update() {
         if(Keyboard.isClicked(Keyboard.KEY_F1))
-            SceneManager.LoadScene(1);
-
-        Vector3f movement = new Vector3f();
-
-        if(Keyboard.isPressed(Keyboard.KEY_W)) {
-            movement.y += 50;
-        }
-
-        if(Keyboard.isPressed(Keyboard.KEY_S)) {
-            movement.y += -50;
-        }
-
-        if(Keyboard.isPressed(Keyboard.KEY_A)) {
-            movement.x += -50;
-        }
-
-        if(Keyboard.isPressed(Keyboard.KEY_D)) {
-            movement.x += 50;
-        }
+            SceneManager.LoadScene(0);
 
         Transform transform = (Transform)testGameObject.GetComponent(Transform.class);
-        transform.position.add(movement.mul(Time.getDeltaTime()));
+        transform.position.add(new Vector3f(25 * Time.getDeltaTime(), 0, 0));
     }
 
 
