@@ -102,7 +102,9 @@ public class SceneManager {
     private static int getSceneBuildIndex(String _sceneName){
         Scene scene;
         for(int i = 0; i < scenes.size(); i++){
-            
+            scene = scenes.get(i);
+            if(scene.getName() == _sceneName)
+                return i;
         }
     
         Debug.Error("No scene with name: " + _sceneName);

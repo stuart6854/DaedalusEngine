@@ -14,6 +14,7 @@ import main.java.org.daedalus.utils.Time;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 import org.joml.Vector2f;
+import org.joml.Vector3f;
 
 /**
  * Created by 1622565 on 26/01/2017.
@@ -42,22 +43,38 @@ public class SceneTest extends Scene {
         
 //        testGameObject.AddComponent(new Rigidbody());
         
-//        BoxCollider collider = (BoxCollider)testGameObject.AddComponent(new BoxCollider());
-//        collider.SetSize(64, 64);
+        BoxCollider collider = (BoxCollider)testGameObject.AddComponent(new BoxCollider());
+        collider.SetSize(64, 64);
         
-        CircleCollider collider = (CircleCollider) testGameObject.AddComponent(new CircleCollider());
-        collider.SetRadius(32);
-        collider.SetCentre(32, 32);
+//        CircleCollider collider = (CircleCollider) testGameObject.AddComponent(new CircleCollider());
+//        collider.SetRadius(32);
+//        collider.SetCentre(32, 32);
     
         Renderer.RENDER_MESH = true;
     }
 
     @Override
     public void Update() {
+        Vector3f movement = new Vector3f();
+
         if(Keyboard.isPressed(Keyboard.KEY_W)) {
-            Transform transform = (Transform)testGameObject.GetComponent(Transform.class);
-            transform.position.add(0, 50 * Time.getDeltaTime(), 0);
+            movement.y += 50;
         }
+
+        if(Keyboard.isPressed(Keyboard.KEY_S)) {
+            movement.y += -50;
+        }
+
+        if(Keyboard.isPressed(Keyboard.KEY_A)) {
+            movement.x += -50;
+        }
+
+        if(Keyboard.isPressed(Keyboard.KEY_D)) {
+            movement.x += 50;
+        }
+
+        Transform transform = (Transform)testGameObject.GetComponent(Transform.class);
+        transform.position.add(movement.mul(Time.getDeltaTime()));
     }
 
 

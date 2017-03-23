@@ -7,7 +7,37 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="LWJGL 3.1.1" level="project" />
-    <orderEntry type="library" name="lwjgl-glfw-javadoc" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/jbox2d-3.0_beta.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/joml-1.9.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/lwjgl-glfw.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/lwjgl-nanovg.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/lwjgl-opengl.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/lwjgl-stb.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/lwjgl.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MODULE_DIR$/libs/joml-1.9.1-javadoc.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/lwjgl-glfw-javadoc.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/lwjgl-javadoc.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/lwjgl-nanovg-javadoc.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/lwjgl-opengl-javadoc.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/lwjgl-stb-javadoc.jar!/" />
+        </JAVADOC>
+        <NATIVE>
+          <root url="file://$MODULE_DIR$/libs/natives" />
+        </NATIVE>
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/libs/joml-1.9.1-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/lwjgl-glfw-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/lwjgl-nanovg-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/lwjgl-opengl-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/lwjgl-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/lwjgl-stb-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>
