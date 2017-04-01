@@ -1,8 +1,12 @@
 package main.java.org.daedalus.architecture.components;
 
+import main.java.org.daedalus.math.Polygon;
 import main.java.org.daedalus.utils.Debug;
 import main.java.org.daedalus.utils.MeshUtils;
+import main.java.org.daedalus.utils.SAT;
+import org.joml.Quaternionf;
 import org.joml.Vector2f;
+import org.joml.Vector3f;
 
 /**
  * Created by Stuart on 29/01/2017.
@@ -28,6 +32,24 @@ public class BoxCollider extends Collider {
     public void Render(){
         if(RENDER_DEBUG_MESH)
             Debug.RenderMeshOutline(renderModel, transform, meshData.tris.length);
+    }
+    
+    public boolean DoesCollide(BoxCollider _other){
+        Vector2f[] a = new Vector2f[4];
+        for(int i = 0; i < meshData.verts.length; i++){
+            Vector3f t = meshData.verts[i];
+            a[i] = new Vector2f(t.x, t.y).add(transform.position.x, transform.position.y);
+        }
+        Polygon polyA = new Polygon(a);
+        
+        Vector2f[] b = new Vector2f[4];
+        for(int i = 0; i < _other.meshData.verts.length; i++){
+            Vector3f t = _other.meshData.verts[i];
+            b[i] = new Vector2f(t.x, t.y).add(_other.transform.position.x, _other.transform.position.y);
+        }
+        Polygon polyB = new Polygon(b);
+        
+        return SAT.Overlap(polyA, polyB);
     }
     
     @Override
