@@ -4,17 +4,11 @@ import main.java.org.daedalus.architecture.GameObject;
 import main.java.org.daedalus.architecture.Scene;
 import main.java.org.daedalus.architecture.SceneManager;
 import main.java.org.daedalus.architecture.components.*;
-import main.java.org.daedalus.graphics.types.MeshData;
 import main.java.org.daedalus.graphics.types.Sprite;
 import main.java.org.daedalus.graphics.types.Texture2D;
 import main.java.org.daedalus.input.Keyboard;
 import main.java.org.daedalus.math.Rect;
-import main.java.org.daedalus.utils.Debug;
-import main.java.org.daedalus.utils.MeshUtils;
 import main.java.org.daedalus.utils.Time;
-import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.World;
-import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 /**

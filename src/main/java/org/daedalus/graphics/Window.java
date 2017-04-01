@@ -79,6 +79,13 @@ public class Window {
     private void SetGL(){
         glEnable(GL_TEXTURE_2D);
         glEnable(GL_STENCIL_TEST);
+        glEnable(GL_DEPTH_TEST);
+
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+        glEnable(GL_ALPHA_TEST);
+        glAlphaFunc(GL_GREATER, 0.1f);
     }
     
     private void SetCallbacks(){
