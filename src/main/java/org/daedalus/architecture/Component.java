@@ -31,4 +31,8 @@ public class Component {
         transform = gameObject.transform;
     }
     
+    public <T extends Component> Component GetComponent(Class<T> _type){
+        return gameObject.GetComponent(_type);
+    }
+    
 }

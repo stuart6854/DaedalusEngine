@@ -57,4 +57,8 @@ public class SpriteRenderer extends Renderer {
         color = _color;
     }
     
+    public Sprite GetSprite(){
+        return sprite;
+    }
+    
 }

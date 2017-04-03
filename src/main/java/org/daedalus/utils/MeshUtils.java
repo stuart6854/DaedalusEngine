@@ -1,6 +1,7 @@
 package main.java.org.daedalus.utils;
 
 import main.java.org.daedalus.graphics.types.MeshData;
+import main.java.org.daedalus.graphics.types.RenderModel;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
@@ -13,20 +14,25 @@ import java.util.List;
 public class MeshUtils {
     
     public static MeshData SquareMesh(float _w, float _h){
-        return SquareMesh(_w, _h, true);
+        return SquareMesh(_w, _h, new Vector2f(0.5f, 0.5f));
     }
     
-    public static MeshData SquareMesh(float _w, float _h, boolean _centre){
+    public static MeshData SquareMesh(float _width, float _height, Vector2f _pivot){
         MeshData meshData = new MeshData();
-        
-        float startX = (_centre) ? -(_w / 2f) : 0;
-        float startY = (_centre) ? -(_h / 2f) : 0;
-        
+    
+        float minX, maxX;
+        float minY, maxY;
+    
+        minX = 0 - (_width * _pivot.x);
+        maxX = _width - (_width * _pivot.x);
+        minY = 0 - (_height * _pivot.y);
+        maxY = _height - (_height * _pivot.y);
+    
         meshData.verts = new Vector3f[]{
-                new Vector3f(startX, startY, 0),
-                new Vector3f(startX + _w, startY, 0),
-                new Vector3f(startX + _w, startY + _h, 0),
-                new Vector3f(startX, startY + _h, 0)
+                new Vector3f(minX, minY, 0),
+                new Vector3f(maxX, minY, 0),
+                new Vector3f(maxX, maxY, 0),
+                new Vector3f(minX, maxY, 0)
         };
         
         meshData.tris = new int[]{

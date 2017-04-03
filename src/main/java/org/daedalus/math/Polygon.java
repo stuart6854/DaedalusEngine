@@ -1,9 +1,7 @@
 package main.java.org.daedalus.math;
 
 import org.joml.Vector2f;
-
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Stuart on 01/04/2017.
@@ -13,7 +11,7 @@ public class Polygon {
     public Vector2f[] points;
     public Vector2f[] edges;
     
-    public Polygon(Vector2f[] _p){
+    private Polygon(Vector2f[] _p){
         points = _p;
         
         BuildEdges();
@@ -34,6 +32,41 @@ public class Polygon {
         }
         
         edges = e.toArray(new Vector2f[e.size()]);
+    }
+    
+    public static Polygon Create(Vector2f[] _points){
+        return new Polygon(_points);
+    }
+    
+    public static Polygon CreateSquare(float _width, float _height){
+        float hW = _width / 2f;
+        float hH = _height / 2f;
+        
+        Vector2f[] points = {
+                new Vector2f(-hW,  -hH),
+                new Vector2f(hW,  -hH),
+                new Vector2f(hW,  hH),
+                new Vector2f(-hW,  hH)
+        };
+        
+        return new Polygon(points);
+    }
+    
+    public static Polygon CreateCircle(float _radius, int _segments){
+        Vector2f[] points = new Vector2f[_segments];
+    
+        float segmentAngle = 360f / _segments;
+        for(int i = 0; i < _segments; i++){
+            float angle = segmentAngle * i;
+        
+            Vector2f seg = new Vector2f();
+            seg.x = _radius * (float)org.joml.Math.cos(java.lang.Math.toRadians(angle));
+            seg.y = _radius * (float)org.joml.Math.sin(java.lang.Math.toRadians(angle));
+            
+            points[i] = seg;
+        }
+        
+        return new Polygon(points);
     }
     
 }

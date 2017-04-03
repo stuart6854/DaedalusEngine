@@ -10,10 +10,11 @@ import main.java.org.daedalus.input.Keyboard;
 import main.java.org.daedalus.math.Rect;
 import main.java.org.daedalus.utils.Debug;
 import main.java.org.daedalus.utils.Time;
+import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 /**
- * Created by 1622565 on 26/01/2017.
+ * Created by Stuart on 26/01/2017.
  */
 public class SceneTest extends Scene {
 
@@ -33,7 +34,7 @@ public class SceneTest extends Scene {
         sprite = Sprite.Create(texture, new Rect(0, 0, texture.getWidth(), texture.getHeight()));
         boxA = new GameObject();
         boxA.name = "Box A";
-        boxA.getTransform().position.set(10, 100, 0);
+        boxA.getTransform().position.set(0, 0, 0);
         SpriteRenderer spriteRenderer = boxA.AddComponent(new SpriteRenderer());
         spriteRenderer.SetSprite(sprite);
         colliderA = boxA.AddComponent(new BoxCollider());
@@ -45,8 +46,8 @@ public class SceneTest extends Scene {
         boxB.getTransform().position.set(100, 100, 0);
         spriteRenderer = boxB.AddComponent(new SpriteRenderer());
         spriteRenderer.SetSprite(sprite);
-        BoxCollider collider = boxB.AddComponent(new BoxCollider());
-        collider.SetSize(64, 64);
+        CircleCollider collider = boxB.AddComponent(new CircleCollider());
+        collider.SetRadius(32);
         AddGameObject(boxB);
     
         Renderer.RENDER_MESH = true;
@@ -56,7 +57,7 @@ public class SceneTest extends Scene {
     public void Update() {
 //        boxB.getTransform().rotation.add(0, 0, 5 * Time.getDeltaTime());
         
-        if(colliderA.DoesCollide((BoxCollider)boxB.GetComponent(BoxCollider.class)))
+        if(colliderA.CollidesWith((CircleCollider)boxB.GetComponent(CircleCollider.class)))
             Debug.Log("COLLIDES");
         
         if(Keyboard.isClicked(Keyboard.KEY_F1))
@@ -83,6 +84,5 @@ public class SceneTest extends Scene {
         Transform transform = (Transform) boxA.GetComponent(Transform.class);
         transform.position.add(movement.mul(Time.getDeltaTime()));
     }
-
 
 }

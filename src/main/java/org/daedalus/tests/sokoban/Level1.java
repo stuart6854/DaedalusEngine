@@ -6,6 +6,7 @@ import main.java.org.daedalus.architecture.components.SpriteRenderer;
 import main.java.org.daedalus.graphics.types.Sprite;
 import main.java.org.daedalus.graphics.types.Texture2D;
 import main.java.org.daedalus.math.Rect;
+import org.joml.Vector2f;
 
 /**
  * Created by 1622565 on 23/03/2017.

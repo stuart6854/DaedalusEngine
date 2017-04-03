@@ -10,13 +10,8 @@ public class PolygonCollider extends Collider{
     public Vector2f[] points;
     
     @Override
-    protected boolean vsBoxCollider(BoxCollider _box) {
-        return false;
-    }
+    protected void UpdateMeshPolygon() {
     
-    @Override
-    protected boolean vsCircleCollider(CircleCollider _circle) {
-        return false;
     }
     
 }

@@ -1,10 +1,11 @@
 package main.java.org.daedalus.utils;
 
 import main.java.org.daedalus.math.Polygon;
-import org.joml.Math;
 import org.joml.Vector2f;
 
 /**
+ * Separating Axis Theorem
+ *
  * Created by Stuart on 25/03/2017.
  */
 public class SAT {
@@ -13,9 +14,9 @@ public class SAT {
         boolean intersects = true;
         
         int edgeCountA = _a.edges.length;
-        int eddgeCountB = _b.edges.length;
+        int edgeCountB = _b.edges.length;
         Vector2f edge;
-        for(int i = 0; i < edgeCountA + eddgeCountB; i++){
+        for(int i = 0; i < edgeCountA + edgeCountB; i++){
             if(i < edgeCountA)
                 edge = _a.edges[i];
             else
@@ -25,10 +26,10 @@ public class SAT {
             axis.normalize();
             
             float minA = 0, minB = 0, maxA = 0, maxB = 0;
-            float[] t = project2(axis, _a);
+            float[] t = Project(axis, _a);
             minA = t[0];
             maxA = t[1];
-            t = project2(axis, _b);
+            t = Project(axis, _b);
             minB = t[0];
             maxB = t[1];
             
@@ -40,7 +41,7 @@ public class SAT {
         return intersects;
     }
     
-    private static float[] project2(Vector2f _a, Polygon _p){
+    private static float[] Project(Vector2f _a, Polygon _p){
         float dotProduct = _a.dot(_p.points[0]);
         float min = dotProduct, max = dotProduct;
         
@@ -54,8 +55,10 @@ public class SAT {
     }
     
     private static float IntervalDistance(float minA, float maxA, float minB, float maxB){
-        if(minA < minB) return minB - maxA;
-        else return minA - maxB;
+        if(minA < minB)
+            return minB - maxA;
+        else
+            return minA - maxB;
     }
     
 }

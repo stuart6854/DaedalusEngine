@@ -3,6 +3,7 @@
     <words>
       <w>antialiasing</w>
       <w>collider</w>
+      <w>coords</w>
       <w>fullscreen</w>
       <w>glfw</w>
       <w>glsl</w>

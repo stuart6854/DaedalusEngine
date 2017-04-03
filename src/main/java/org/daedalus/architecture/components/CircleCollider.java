@@ -1,5 +1,6 @@
 package main.java.org.daedalus.architecture.components;
 
+import main.java.org.daedalus.math.Polygon;
 import main.java.org.daedalus.utils.Debug;
 import main.java.org.daedalus.utils.MeshUtils;
 import org.joml.Vector2f;
@@ -22,24 +23,15 @@ public class CircleCollider extends Collider{
     }
     
     @Override
+    protected void UpdateMeshPolygon() {
+        meshPolygon = Polygon.CreateCircle(radius, 20);
+    }
+    
+    @Override
     public void Render(){
         if(RENDER_DEBUG_MESH)
             Debug.RenderMeshOutline(renderModel, transform, meshData.tris.length);
             
-    }
-    
-    @Override
-    protected boolean vsBoxCollider(BoxCollider _box) {
-        return false;
-    }
-    
-    @Override
-    protected boolean vsCircleCollider(CircleCollider _circle) {
-        // Optimised Method
-        float r = this.radius + _circle.radius;
-        r *= r;
-        
-        return (r < Math.pow(centre.x + _circle.centre.x, 2f) + Math.pow(centre.y + _circle.centre.y, 2f));
     }
         
     public void SetRadius(float _r){
@@ -47,6 +39,7 @@ public class CircleCollider extends Collider{
             UpdateRenderModel(MeshUtils.CircleMesh(_r, DEBUG_MESH_SEGMENTS, centre));
         
         radius = _r;
+        UpdateMeshPolygon();
     }
     
     public void SetCentre(float _x, float _y){
@@ -55,6 +48,7 @@ public class CircleCollider extends Collider{
         
         centre.x = _x;
         centre.y = _y;
+        UpdateMeshPolygon();
     }
     
 }
