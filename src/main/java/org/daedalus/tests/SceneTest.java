@@ -23,6 +23,7 @@ public class SceneTest extends Scene {
     private GameObject boxA;
     private GameObject boxB;
     private BoxCollider colliderA;
+    private BoxCollider colliderB;
 
     public SceneTest() {
         super("Scene Test 1");
@@ -46,8 +47,8 @@ public class SceneTest extends Scene {
         boxB.getTransform().position.set(100, 100, 0);
         spriteRenderer = boxB.AddComponent(new SpriteRenderer());
         spriteRenderer.SetSprite(sprite);
-        CircleCollider collider = boxB.AddComponent(new CircleCollider());
-        collider.SetRadius(32);
+        colliderB = boxB.AddComponent(new BoxCollider());
+        colliderB.SetSize(64, 64);
         AddGameObject(boxB);
     
         Renderer.RENDER_MESH = true;
@@ -55,9 +56,9 @@ public class SceneTest extends Scene {
 
     @Override
     public void Update() {
-//        boxB.getTransform().rotation.add(0, 0, 5 * Time.getDeltaTime());
+        boxB.getTransform().rotation.add(0, 0, 5 * Time.getDeltaTime());
         
-        if(colliderA.CollidesWith((CircleCollider)boxB.GetComponent(CircleCollider.class)))
+        if(colliderA.CollidesWith(colliderB))
             Debug.Log("COLLIDES");
         
         if(Keyboard.isClicked(Keyboard.KEY_F1))
