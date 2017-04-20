@@ -3,6 +3,7 @@ package main.java.org.daedalus.tests;
 import main.java.org.daedalus.architecture.GameObject;
 import main.java.org.daedalus.architecture.Scene;
 import main.java.org.daedalus.architecture.SceneManager;
+import main.java.org.daedalus.architecture.UIObject;
 import main.java.org.daedalus.architecture.components.*;
 import main.java.org.daedalus.graphics.types.Sprite;
 import main.java.org.daedalus.graphics.types.Texture2D;
@@ -18,12 +19,16 @@ import org.joml.Vector3f;
  */
 public class SceneTest extends Scene {
 
+    //Gameobjects
     private Texture2D texture;
     private Sprite sprite;
     private GameObject boxA;
     private GameObject boxB;
     private BoxCollider colliderA;
     private BoxCollider colliderB;
+    
+    //UI
+    private UIObject uiObject;
 
     public SceneTest() {
         super("Scene Test 1");
@@ -31,6 +36,8 @@ public class SceneTest extends Scene {
 
     @Override
     public void Initialise() {
+        Renderer.RENDER_MESH = true;
+        
         texture = Texture2D.Create("resources/textures/placeholder_orange_64.png");
         sprite = Sprite.Create(texture, new Rect(0, 0, texture.getWidth(), texture.getHeight()));
         boxA = new GameObject();
@@ -50,8 +57,9 @@ public class SceneTest extends Scene {
         colliderB = boxB.AddComponent(new BoxCollider());
         colliderB.SetSize(64, 64);
         AddGameObject(boxB);
-    
-        Renderer.RENDER_MESH = true;
+        
+        //UI
+        uiObject = new UIObject();
     }
 
     @Override

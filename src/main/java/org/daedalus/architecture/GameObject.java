@@ -1,7 +1,5 @@
 package main.java.org.daedalus.architecture;
 
-import main.java.org.daedalus.architecture.components.Renderer;
-import main.java.org.daedalus.architecture.components.SpriteRenderer;
 import main.java.org.daedalus.architecture.components.Transform;
 import main.java.org.daedalus.utils.Debug;
 
@@ -53,6 +51,18 @@ public class GameObject {
         _comp.SetGameObject(this);
         components.add(_comp);
         return (T)_comp;
+    }
+    
+    public void RemoveComponent(Class _type){
+        String typeName = _type.getSimpleName();
+        for(Component comp : components){
+            String className = comp.getClass().getSimpleName();
+            String superClassName = comp.getClass().getSuperclass().getSimpleName();
+            if(className.equals(typeName) || superClassName.equals(typeName)) {
+                components.remove(comp);
+                return;
+            }
+        }
     }
 
     public <T extends Component> Component GetComponent(Class<T> _type){

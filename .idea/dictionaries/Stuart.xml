@@ -5,6 +5,7 @@
       <w>collider</w>
       <w>coords</w>
       <w>fullscreen</w>
+      <w>gameobjects</w>
       <w>glfw</w>
       <w>glsl</w>
       <w>lwjgl</w>
