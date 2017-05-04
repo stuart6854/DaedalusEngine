@@ -1,5 +1,7 @@
 package main.java.org.daedalus.graphics.types;
 
+import org.lwjgl.nanovg.NVGColor;
+
 /**
  * Created by 1622565 on 26/01/2017.
  */
@@ -49,7 +51,22 @@ public class Color {
     public void setA(float a) {
         this.a = a;
     }
-    
+
+    public static NVGColor ToNVGColor(int r, int g, int b, int a){
+        return ToNVGColor(r / 255f, g / 255f, b / 255f, a / 255f);
+    }
+
+    public static NVGColor ToNVGColor(float r, float g, float b, float a){
+        NVGColor color = NVGColor.create();
+
+        color.r(r);
+        color.g(g);
+        color.b(b);
+        color.a(a);
+
+        return color;
+    }
+
     public static Color White(){
         return new Color(1f, 1f, 1f);
     }

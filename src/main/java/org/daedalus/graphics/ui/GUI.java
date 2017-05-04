@@ -4,16 +4,15 @@ import main.java.org.daedalus.graphics.Window;
 import main.java.org.daedalus.utils.FileUtils;
 import org.lwjgl.nanovg.NVGColor;
 import org.lwjgl.nanovg.NanoVG;
+import org.lwjgl.nuklear.NkContext;
+
+import static org.lwjgl.nuklear.Nuklear.*;
 
 import java.nio.ByteBuffer;
 import java.nio.DoubleBuffer;
 
-import static org.lwjgl.nanovg.NanoVG.*;
 import static org.lwjgl.nanovg.NanoVGGL3.*;
-import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.system.MemoryUtil.NULL;
-import static org.lwjgl.system.MemoryUtil.memAllocDouble;
-import static org.lwjgl.system.MemoryUtil.memFree;
+import static org.lwjgl.system.MemoryUtil.*;
 
 /**
  * Created by Stuart on 31/01/2017.
@@ -48,44 +47,37 @@ public class GUI {
     public void Render(){
         int wWidth = Window.getResolution().width;
         int wHeight = Window.getResolution().height;
-        
-        nvgBeginFrame(vg, wWidth, wHeight, 1);
-        
-        //Blue Ribbon
-        nvgBeginPath(vg);
-        nvgRect(vg, 0, wHeight - 100, wWidth, 50);
-        nvgFillColor(vg, rgba(0x23, 0xa1, 0xf1, 200, color));
-        nvgFill(vg);
-        
-        //Text
-        nvgFontSize(vg, 40.0f);
-        nvgFontFace(vg, fontName);
-        nvgTextAlign(vg, NVG_ALIGN_CENTER | NVG_ALIGN_TOP);
-        nvgFillColor(vg, rgba(0xe6, 0xea, 0xed, 255, color));
-        nvgText(vg, wWidth / 2, wHeight - 95, "Hello World!");
-        
-        
-        nvgEndFrame(vg);
+
+        //Nuklear
+//        NkContext nkContext = NkContext.create();
+//        nk_init_fixed(nkContext, memCalloc(1, 1024), null);
+
+        // NanoVG
+//        nvgBeginFrame(vg, wWidth, wHeight, 1);
+//
+//        //Blue Ribbon
+//        nvgBeginPath(vg);
+//        nvgRect(vg, 0, wHeight - 100, wWidth, 50);
+//        nvgFillColor(vg, Color.ToNVGColor(35, 161, 241, 200));
+//        nvgFill(vg);
+//
+//        //Text
+//        nvgFontSize(vg, 40.0f);
+//        nvgFontFace(vg, fontName);
+//        nvgTextAlign(vg, NVG_ALIGN_CENTER | NVG_ALIGN_TOP);
+//        nvgFillColor(vg, Color.ToNVGColor(230, 234, 237, 255));
+//        nvgText(vg, wWidth / 2, wHeight - 95, "Hello World!");
+//
+//        nvgEndFrame(vg);
         
         //Restore OpenGL State
-        glEnable(GL_DEPTH_TEST);
-        glEnable(GL_STENCIL_TEST);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        Window.SetGL();
     }
     
     public void Cleanup(){
         nvgDelete(vg);
         memFree(posX);
         memFree(posY);
-    }
-    
-    private NVGColor rgba(int r, int g, int b, int a, NVGColor colour) {
-        colour.r(r / 255.0f);
-        colour.g(g / 255.0f);
-        colour.b(b / 255.0f);
-        colour.a(a / 255.0f);
-        
-        return colour;
     }
     
 }

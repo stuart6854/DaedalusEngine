@@ -10,13 +10,13 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/jbox2d-3.0_beta.jar!/" />
           <root url="jar://$MODULE_DIR$/libs/joml-1.9.1.jar!/" />
           <root url="jar://$MODULE_DIR$/libs/lwjgl-glfw.jar!/" />
           <root url="jar://$MODULE_DIR$/libs/lwjgl-nanovg.jar!/" />
           <root url="jar://$MODULE_DIR$/libs/lwjgl-opengl.jar!/" />
           <root url="jar://$MODULE_DIR$/libs/lwjgl-stb.jar!/" />
           <root url="jar://$MODULE_DIR$/libs/lwjgl.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/lwjgl-nuklear.jar!/" />
         </CLASSES>
         <JAVADOC>
           <root url="jar://$MODULE_DIR$/libs/joml-1.9.1-javadoc.jar!/" />
@@ -25,6 +25,7 @@
           <root url="jar://$MODULE_DIR$/libs/lwjgl-nanovg-javadoc.jar!/" />
           <root url="jar://$MODULE_DIR$/libs/lwjgl-opengl-javadoc.jar!/" />
           <root url="jar://$MODULE_DIR$/libs/lwjgl-stb-javadoc.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/lwjgl-nuklear-javadoc.jar!/" />
         </JAVADOC>
         <NATIVE>
           <root url="file://$MODULE_DIR$/libs/natives" />
@@ -36,6 +37,7 @@
           <root url="jar://$MODULE_DIR$/libs/lwjgl-opengl-sources.jar!/" />
           <root url="jar://$MODULE_DIR$/libs/lwjgl-sources.jar!/" />
           <root url="jar://$MODULE_DIR$/libs/lwjgl-stb-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/lwjgl-nuklear-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>

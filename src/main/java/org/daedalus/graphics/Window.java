@@ -76,7 +76,7 @@ public class Window {
         glfwWindowHint(GLFW_SAMPLES, 4); // Allow optional antialiasing
     }
     
-    private void SetGL(){
+    public static void SetGL(){
         glEnable(GL_TEXTURE_2D);
         glEnable(GL_STENCIL_TEST);
         glEnable(GL_DEPTH_TEST);
